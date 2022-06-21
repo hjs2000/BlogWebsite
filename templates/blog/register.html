@@ -1,0 +1,262 @@
+{# {% load static %}  #} 
+<!-- load static 引入static文件 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singularity Blog</title>
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+    <script src="{% static 'ckeditor/config.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+
+<body>
+    <div class="root">
+
+        <div class="container">
+            <div class="header">
+                <div class="header-nav">
+                    <div class="nav-wrapper">
+                        <div class="navWrapper">
+                            <div class="nav"><a class="nav-a" href="/">首&nbsp;页</a></div>
+                            <div class="nav"><a class="nav-a" href="/blog">博&nbsp;客</a></div>
+                            <div class="nav"><a class="nav-a" href="/blog/toNavigation" title="导航链接">导&nbsp;航</a></div>
+                            <div class="nav"><a class="nav-a" href="/admin">后&nbsp;台</a></div>
+                        </div>
+                        <div class="searchWrapper">
+                            <form class="searchForm" action="/blog/blogSearch/" method="get">
+                                <input type="text" class="searchInput" name="searchWord" placeholder="输入关键字...">
+                                <button type="submit" class="searchButton"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marqueeWrapper">
+                <div class="marqueeWrap">
+                    <marquee onmouseout="this.start()" onmouseover="this.stop()">
+                        &gt;&gt;本站共计<span style="color:red;">&nbsp;{{articlesCount}}&nbsp;</span>条博文，
+                        今日更新<span style="color:red;">&nbsp;{{updateTodayCount}}&nbsp;</span>条！&lt;&lt;
+                    </marquee>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="content-left">
+
+                    <!-- <h3>注册</h3> -->
+                    <div class="left-wrapper">
+                        <div class="user-wrapper">
+                            <div class="transparent-border">
+                                <h3 class="form-signin-heading">注册新用户</h3>
+                                <div class="card-signin">
+                                    <img class="profile-img" src="../../static/img/default_head_portrait.jpg" alt="" />
+                                    <form class="form-signin" action="/blog/register/" method="post">
+                                        {% if message %}
+                                        <div class="alert-warning">{{ message }}</div>
+                                        {% endif %}
+                                        {% csrf_token %}
+                                        <label for="inputUsername" class="sr-only">Username</label>
+                                        <input type="text" name="username" id="id_Username" class="form-control"
+                                            placeholder="username" required autofocus />
+                                        <label for="inputPassword" class="sr-only">Password</label>
+                                        <input type="password" name="password" id="id_Password" class="form-control"
+                                            placeholder="password" required />
+                                        <label for="inputPassword" class="sr-only">Password</label>
+                                        <input type="password" name="re_password" id="id_RePassword"
+                                            class="form-control" placeholder="repeat password" required />
+                                        <label for="inputEmail" class="sr-only">Email
+                                            address</label>
+                                        <input type="email" name="email" id="id_Email" class="form-control"
+                                            placeholder="email" />
+                                        <button class="btn-signin" type="submit">Create New Account</button>
+                                    </form>
+                                </div>
+                                <p class="text-center">
+                                    <a href="/blog/toLogin">Sign In</a> |
+                                    <a href="/blog">Home Page</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+
+                </div>
+
+                <div class="content-right">
+                    <div class="right-wrapper">
+                        <div class="card-module hoverFloat">
+                            <div class="avatar">
+                                <a href="#">
+                                    <img class="avatarImg" src="../../static/img/default_head_portrait.jpg"
+                                        title="default">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <p class="test-p">
+                                    <!-- 引入今日诗词接口 -->
+                                    <span id="jinrishici-sentence"></span>
+                                    <script src="../../static/js/jinrishici.js" charset="utf-8"></script>
+                                </p>
+                            </div>
+                            <div class="social-wrapper">
+                                <a class="social-a" href="#"></a>
+                                <a class="social-a" href="#"></a>
+                                <a class="social-a" href="#"></a>
+                                <a class="social-a" href="#"></a>
+                            </div>
+                        </div>
+                        <div class="card-module hoverFloat">
+                            <header class="pure">
+                                <div>
+                                    <i></i>
+                                    &nbsp;&nbsp;友情链接<a href="/blog/toNavigation"
+                                        style="color: #1bc3fb;">&nbsp;&gt;&gt;</a>
+                                </div>
+                            </header>
+                            <div class="frends-link">
+                                <ul class="frends-link-ul">
+                                    {% for link in navigationLink %}
+                                    <li class="frends-link-li">
+                                        <a class="frends-link-a" href="{{link.website}}" target="_blank">
+                                            <div class="frends-link-content">
+                                                <i></i>
+                                                &nbsp;&nbsp;{{ link.name }}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% empty %}
+                                    <li class="frends-link-li">
+                                        <a class="frends-link-a" href="#">
+                                            <div class="frends-link-content">
+                                                <i></i>
+                                                &nbsp;&nbsp;暂无友链，互换友链请留言我!
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-module hoverFloat">
+                            <header class="pure">
+                                <div>
+                                    <i></i>
+                                    &nbsp;&nbsp;热门标签<a href="/blog/popularTag"
+                                        style="color: #1bc3fb;">&nbsp;&gt;&gt;</a>
+                                </div>
+                            </header>
+                            <div class="popularTags">
+                                {% for popTag in popTags%}
+                                <a href="/blog/popularTag/?tag={{ popTag.name }}" class="popularTags-a">{{popTag.name}}</a>
+                                {% empty %}
+                                <a href="#" class="popularTags-a">暂时没有数据</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer transparent-border">
+                <div class="footer-wrapper">
+                    <div class="footer-left">
+                        <div class="footer-left-title">
+                            The blog design by Daniel.
+                        </div>
+                        <div class="footer-left-info">
+                            The blog design by Daniel.
+                        </div>
+                        <div class="footer-left-info">
+                            联系人：
+                        </div>
+                        <div class="footer-left-info">
+                            邮箱：
+                        </div>
+                        <div class="footer-left-info">
+                            地址：
+                        </div>
+                    </div>
+
+                    <div class="footer-right">
+                        <ul class="footer-right-ul">
+                            <li class="footer-right-li">
+                                <h4 class="footer-right-title">
+                                    <a href="#" style="color:#d3d3d3;">关于我们</a>
+                                </h4>
+                                <p class="footer-right-p">
+                                    <a href="#">简介</a>
+                                </p>
+                            </li>
+                            <li class="footer-right-li">
+                                <h4 class="footer-right-title">
+                                    <a href="#" style="color:#d3d3d3;">网站信息</a>
+                                </h4>
+                                <p class="footer-right-p">
+                                    <a href="#">信息展示</a>
+                                </p>
+                                <p class="footer-right-p">
+                                    <a href="#">数据统计</a>
+                                </p>
+                            </li>
+                            <li class="footer-right-li">
+                                <h4 class="footer-right-title">
+                                    <a href="#" style="color:#d3d3d3;">其他</a>
+                                </h4>
+                                <p class="footer-right-p">
+                                    <a href="#">网站风采</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="float-menu">
+            {% if request.session.isLogin %}
+            <a href="/blog/toPersonal">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">个人中心</span>
+                </div>
+            </a>
+            <a href="/blog/toBlogCreation">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">新建</span>
+                </div>
+            </a>
+            <a href="/blog/toLogout">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">退出</span>
+                </div>
+            </a>
+            {% else %}
+            <a href="/blog/toLogin">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">登录</span>
+                </div>
+            </a>
+            <a href="/blog/toRegister">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">注册</span>
+                </div>
+            </a>
+            {% endif %}
+            <a href="javascript:void(0);" title="返回顶部" id="gotoTop" style="display: none;">
+                <div class="float-menu-btn">
+                    <span class="float-menu-text">^^</span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
+
+</html>

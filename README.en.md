@@ -4,33 +4,10 @@
 Blog website based on Django.
 
 #### Software Architecture
-Software architecture description
+Django framework, simpleui background management
 
-#### Installation
+#### [Previous version](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### [Create tutorial](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot#%E5%88%9B%E5%BB%BA%E6%95%99%E7%A8%8B)
 
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### [Instructions for use](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)

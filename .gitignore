@@ -1,0 +1,21 @@
+__pycache__
+
+/**/migrations/*
+!/**/migrations/__init__.py
+
+/**/media
+
+# 收集库文件
+# pip freeze > requirement.txt
+# 批量安装库文件
+# pip install -r requirement.txt
+
+venv/
+
+# 收集的静态文件
+collectstatic/
+
+build/
+dist/
+
+logs/

@@ -1,37 +1,26 @@
-# BlogWebsite
+## Blog 博客项目
 
 #### 介绍
-Blog website based on Django.
+Blog 采用django框架，simpleui后台管理界面，实现博客的相关功能
 
 #### 软件架构
-软件架构说明
+django框架，simpleui后台管理
 
+##### [上一个版本](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot)
 
-#### 安装教程
+##### [创建教程](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot#%E5%88%9B%E5%BB%BA%E6%95%99%E7%A8%8B)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+##### [使用说明](https://gitee.com/huang16/exampleSource/tree/master/BlogRoot#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+1. 创建虚拟环境，启动环境
+    PS D:>cd BlogWebsite
+    PS D:\BlogWebsite> python -m venv venv
+    PS D:\BlogWebsite> .\venv\Scripts\activate
+2. 安装库文件
+    (venv) PS D:\BlogWebsite> pip install -r .\requirement.txt
+3. 数据库迁移文件
+    (venv) PS D:\BlogWebsite> python .\manage.py makemigrations
+    (venv) PS D:\BlogWebsite> python .\manage.py migrate
+4. 创建超级用户
+    (venv) PS D:\BlogWebsite> python .\manage.py createsuperuser
+5. 启动项目
+    (venv) PS D:\BlogWebsite> python .\manage.py runserver
